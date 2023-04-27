@@ -1,0 +1,16 @@
+spring:
+    cloud:
+        gateway:
+            routes:
+                - id: gamedataservice
+                  uri: http://localhost:8081
+                  predicates:
+                      - Path=/api/gamedata/**
+                  filters:
+                    - RewritePath=/api/gamedata/(?<segment>.*), /api/gamedataservice/$\{segment}
+
+server:
+    port: 8080
+logging:
+  level:
+    root: debug
