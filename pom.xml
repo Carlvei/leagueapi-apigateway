@@ -11,19 +11,18 @@
 
 	<groupId>at.adesso.leagueapi</groupId>
 	<artifactId>apigateway</artifactId>
-	<version>0.1.0</version>
+	<version>0.1.1</version>
 	<name>apigateway</name>
 	<description>apigateway</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud-starter-gateway.version>4.0.4</spring-cloud-starter-gateway.version>
 		<snakeyaml.version>2.0</snakeyaml.version>
-		<commons.version>0.2.3</commons.version>
+		<commons.version>0.3.2</commons.version>
 		<test-commons.version>0.2.0</test-commons.version>
 		<resilience4j-circuitbreaker.version>2.0.2</resilience4j-circuitbreaker.version>
 		<spring-cloud-contract-stub-runner.version>4.0.2</spring-cloud-contract-stub-runner.version>
 		<spring-security-core.version>6.0.3</spring-security-core.version>
-		<lombok.version>1.18.26</lombok.version>
 		<jjwt.version>0.11.5</jjwt.version>
 		<jasypt-spring-boot-starter.version>3.0.5</jasypt-spring-boot-starter.version>
 	</properties>
@@ -61,34 +60,6 @@
 			<artifactId>snakeyaml</artifactId>
 			<version>${snakeyaml.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>${lombok.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-api</artifactId>
-			<version>${jjwt.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-impl</artifactId>
-			<version>${jjwt.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
-			<version>${jjwt.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.github.ulisesbocchio</groupId>
-			<artifactId>jasypt-spring-boot-starter</artifactId>
-			<version>${jasypt-spring-boot-starter.version}</version>
-		</dependency>
-
 
 		<!-- Test dependencies -->
 
