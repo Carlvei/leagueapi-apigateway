@@ -30,12 +30,12 @@ public class AuthorizationFilter implements WebFilter {
             return chain.filter(exchange);
         }
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
-            throw new UnauthorizedAccessException();
+            throw new UnauthorizedAccessException("No Bearertoken was found in the headers.");
         }
 
         final String token = authorizationHeader.split(" ")[1].trim();
         if (!jwtTokenValidator.validateToken(token)) {
-            throw new UnauthorizedAccessException();
+            throw new UnauthorizedAccessException("Token has expired");
         }
         return chain.filter(exchange);
     }
