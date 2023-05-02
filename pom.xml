@@ -18,7 +18,7 @@
 		<java.version>17</java.version>
 		<spring-cloud-starter-gateway.version>4.0.4</spring-cloud-starter-gateway.version>
 		<snakeyaml.version>2.0</snakeyaml.version>
-		<commons.version>0.2.5</commons.version>
+		<commons.version>0.2.3</commons.version>
 		<test-commons.version>0.2.0</test-commons.version>
 		<resilience4j-circuitbreaker.version>2.0.2</resilience4j-circuitbreaker.version>
 		<spring-cloud-contract-stub-runner.version>4.0.2</spring-cloud-contract-stub-runner.version>
