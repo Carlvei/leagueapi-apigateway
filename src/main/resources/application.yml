@@ -7,11 +7,18 @@ spring:
       gateway:
           routes:
               - id: gamedataservice
-                uri: http://localhost:8081
+                uri: http://localhost:8082
                 predicates:
                     - Path=/api/gamedata/**
                 filters:
                   - RewritePath=/api/gamedata/(?<segment>.*), /api/gamedataservice/$\{segment}
+
+              - id: authservice
+                uri: http://localhost:8081
+                predicates:
+                  - Path=/api/auth/**
+                filters:
+                  - RewritePath=/api/auth/(?<segment>.*), /api/authservice/$\{segment}
 jwt:
   key:
     secret: Ycad*ERRM^+wA?9X4mtPFh6+V+ybMvGFjqb5MzvG=ZPmRPFs6W**t%UkVuz^3mWp8E*-_baZgKHweJJQsd42uAZ*jNPKUshHwNs7mjKy+MV--5=-j4aL3!UgrqSAEd6dtG$R7y6UwSW7TUM=4-+JbZE!Y=QaF!t44BcMS=9dFTy*CxFQ8T8XytLj9yL5*rMq$^sRF3f4AhL6QJYnFRDz+dLgDgRb^xA%zQbeDRJfkr^7=y?KGrJNU+7#^cKFbx8w

@@ -12,11 +12,11 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 @Component
-public class AuthorizationFilter implements WebFilter {
-    private final List<String> AUTHENTICATIONLESS_PATHS = List.of("/login");
+public class AuthenticationFilter implements WebFilter {
+    private final List<String> AUTHENTICATIONLESS_PATHS = List.of("/api/auth/authorization/authenticate", "/api/auth/authorization/signup");
     private final JwtTokenValidator jwtTokenValidator;
 
-    public AuthorizationFilter(final JwtTokenValidator jwtTokenValidator) {
+    public AuthenticationFilter(final JwtTokenValidator jwtTokenValidator) {
         this.jwtTokenValidator = jwtTokenValidator;
     }
 
