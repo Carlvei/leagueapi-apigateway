@@ -24,7 +24,6 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeExchange().anyExchange().permitAll();
 
-        http.addFilterBefore(authenticationFilter, SecurityWebFiltersOrder.AUTHORIZATION);
         return http.build();
     }
 }
