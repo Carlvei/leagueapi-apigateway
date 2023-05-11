@@ -1,21 +1,47 @@
 spring:
-  autoconfigure:
-    exclude[0]: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
   main:
     web-application-type: reactive
+  config:
+    import: optional:env/env.properties
   cloud:
       gateway:
-          routes:
-              - id: gamedataservice
-                uri: http://localhost:8081
-                predicates:
-                    - Path=/api/gamedata/**
-                filters:
-                  - RewritePath=/api/gamedata/(?<segment>.*), /api/gamedataservice/$\{segment}
+        globalcors:
+          corsConfigurations:
+            '[/**]':
+              allowedOrigins: "http://localhost:4200"
+              allowedHeaders: "*"
+              allowedMethods:
+                - GET
+                - POST
+                - DELETE
+                - PUT
+        routes:
+            - id: gamedataservice
+              uri: http://localhost:8082
+              predicates:
+                  - Path=/api/gamedata/**
+              filters:
+                - RewritePath=/api/gamedata/(?<segment>.*), /api/gamedataservice/$\{segment}
+
+            - id: authservice
+              uri: http://localhost:8081
+              predicates:
+                - Path=/api/auth/**
+              filters:
+                - RewritePath=/api/auth/(?<segment>.*), /api/authservice/$\{segment}
+
+leagueapi:
+  gateway:
+    paths-without-authentication: /api/auth/authentication/authenticate, /api/auth/authentication/signup
+
 jwt:
   key:
-    secret: Ycad*ERRM^+wA?9X4mtPFh6+V+ybMvGFjqb5MzvG=ZPmRPFs6W**t%UkVuz^3mWp8E*-_baZgKHweJJQsd42uAZ*jNPKUshHwNs7mjKy+MV--5=-j4aL3!UgrqSAEd6dtG$R7y6UwSW7TUM=4-+JbZE!Y=QaF!t44BcMS=9dFTy*CxFQ8T8XytLj9yL5*rMq$^sRF3f4AhL6QJYnFRDz+dLgDgRb^xA%zQbeDRJfkr^7=y?KGrJNU+7#^cKFbx8w
-    signature: NPGPU8PDu8D9F7WZXkbnGA/yYz0RTepG8+Xrkkq+ffdDtRjBdux5ErDDfKoB8uq0fJsw3jsujfzLTqJb07Ny+dW/WM+2gNQFf3A3ohXWEmBeTuLf7V0R916yHu2jqHJ7TqAQJaVapK16QUGMPX27lWwzT+B0F6uFhPUFDZ8uwLuQ5rcRc9y65lyNVubkAEmOiLTNt7er6czA6DpOvMB1UjxPt+YxHm0kXXalbfcD2rkV6VYQFz/5qEGIy2jBfuggmYPYBAc5OPHKhvUKsMP9cOKlqBMQl/4FgTb1Vzda8R/4vhV4Lc5FSE8GSe7W7lsVfgCKShZ5YXzfvumrt6d007/F3pjIZWDsb2u4wkWCBzjteTHZC0knPEptgPLCwMFASX+7hWL72m4wjtCv2WHXoO+oWNQfVFJMseZeXNZV9Fbn38Iou1UiyoqcbzbaSNpOPtEhy8h2gIJtq2MN3qb2o7LcLYSHg4d3
+    secret: ${SECRET:#{null}}
+    signature: BeqbvWM1mem/MP887bU919s3AAQmFl6cdanzq5h7LZof9Cz2XsQcAXGuqGziW6t0zAkoB6bevoj/JYN/4sIPjWKoibQr3YsigC4Fiip6CN0=
 
 server:
     port: 8080
+
+logging:
+  level:
+    root: debug
