@@ -15,6 +15,7 @@ spring:
                 - POST
                 - DELETE
                 - PUT
+              allowCredentials: true
         routes:
             - id: gamedataservice
               uri: http://localhost:8082
