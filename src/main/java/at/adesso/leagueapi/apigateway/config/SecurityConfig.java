@@ -11,19 +11,11 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @Configuration
 @EnableWebFluxSecurity
 public class SecurityConfig {
-    private final AuthenticationFilter authenticationFilter;
-
-    public SecurityConfig(AuthenticationFilter authenticationFilter) {
-        this.authenticationFilter = authenticationFilter;
-    }
 
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(final ServerHttpSecurity http) {
         http
-                .cors().disable()
-                .csrf().disable()
-                .authorizeExchange().anyExchange().permitAll();
-
+                .csrf().disable();
         return http.build();
     }
 }
